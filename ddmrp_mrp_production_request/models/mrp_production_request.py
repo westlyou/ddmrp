@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 _PRIORITY_LEVEL = [
     ('1_red', 'Red'),
@@ -58,7 +58,8 @@ class MrpProductionRequest(models.Model):
 
     orderpoint_id = fields.Many2one(
         comodel_name='stock.warehouse.orderpoint', store=True, index=True,
-        string="Reordering rule", compute='_compute_orderpoint_id')
+        string="Reordering rule", compute='_compute_orderpoint_id',
+    )
     execution_priority_level = fields.Selection(
         string="Buffer On-Hand Alert Level", selection=_PRIORITY_LEVEL,
         readonly=True,
